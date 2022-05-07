@@ -1,0 +1,118 @@
+// Naikun Fan (Matrikelnummer: 23033490)
+package com.company;
+
+public class Arrays{
+
+   public static void printArray(int[] array) {
+           System.out.print("[");
+       for (int i=0;i<array.length;i++){
+           if(i<array.length-1){
+           System.out.print(array[i]+", ");}
+           if(i == array.length-1){
+           System.out.print(array[i]);}
+       }
+       System.out.print("]");
+   }
+
+    public static int sum(int[] array) {
+        int sum=0;
+        for (int i=0;i<array.length;i++){
+            sum=sum+array[i];
+        }
+        return sum;
+    }
+
+    public static double mean(int[] array) {
+        double mean=0;
+        double sum=0;
+        for (int i=0;i<array.length;i++){
+            sum=sum+array[i];
+        }
+        mean=sum/array.length;
+        return mean;
+    }
+
+    public static int[] sumArrays(int[] array1, int[] array2) {
+        int length=array1.length<array2.length?array1.length: array2.length;
+        int[] array3=new int[length];
+        for (int i=0; i<length;i++){
+            array3[i]=array1[i]+array2[i];
+        }
+        return array3;
+    }
+
+    public static int maximum(int[] array) {
+        int maximum=0;
+        for (int i=0;i<array.length;i++){
+            if (array[i]<array[i++]){
+               maximum=array[i++];
+            }
+            else if (array[i]>=array[i++]){
+                maximum=array[i];
+            }
+
+        }
+        return maximum;
+    }
+
+   public static int[] tail(int[] array) {
+        int[] a=new int[(array.length-1)];
+        for (int i=0;i<array.length;i++){
+            if (i==0){
+                a[i]=array[1];
+            }
+            else if (i>1){
+                a[i-1]=array[i];
+            }
+        }
+        return a;
+    }
+
+    public static boolean checkSorting(int[] array) {
+        for (int i=0;i<array.length-1;i++) {
+            if (array[i] < array[i + 1]) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+         return checkSorting(array);
+    }
+
+
+
+        public static void main(String[] args) {
+        int[] array1={0,5,12,17,21,42};
+        int[] array2={23,18,3,16,41,7,9};
+        int[] array3=sumArrays(array1, array2);
+        int maximum=maximum(array1);
+        int[] b=tail(array1);
+        int[] c=tail(array2);
+
+
+            printArray(array1);
+            System.out.print("\n");
+            printArray(array2);
+            System.out.print("\n");
+            System.out.print("array1: sum = "+sum(array1)+",mean = "+mean(array1));
+            System.out.print("\n");
+            System.out.print("array2: sum = "+sum(array2)+",mean = "+mean(array2));
+            System.out.print("\n");
+            System.out.print(java.util.Arrays.toString(array3));
+            System.out.print("\n");
+            System.out.print("Maximum von array1: "+maximum);
+            System.out.print("\n");
+            System.out.print("array1: tail = "+java.util.Arrays.toString(b));
+            System.out.print("\n");
+            System.out.print("array2: tail = "+java.util.Arrays.toString(c));
+            System.out.print("\n");
+            System.out.println("array1: sorted = "+checkSorting(array1));
+            System.out.println("array2: sorted = "+checkSorting(array2));
+
+            }
+
+
+ }
+
+
+

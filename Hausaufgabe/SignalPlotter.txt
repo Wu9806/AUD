@@ -1,0 +1,97 @@
+// Naikun Fan (Matrikelnummer: 23033490)
+package com.company;
+import java.util.Scanner;
+
+public class SignalPlotter {
+  public static final int FIRST_LIMIT=-10;
+  public static final int SECOND_LIMIT=10;
+  public static final int NUMBER_OF_POINT=1000;
+
+
+    public static double[] createSamplingPoints(double firstLimit, double secondLimit,int n){
+        // n: numberOfPoint
+        double[] array1=new double[n]; // spaeter mit den Stuetztpunkterb gefuellt wird
+        for(int i=0;i<array1.length;i++){
+            if(n!=1){
+                double d;
+                d=(secondLimit-firstLimit)/(n-1);
+                array1[0]=firstLimit;
+                array1[n-1]=secondLimit;
+                array1[i]=firstLimit+i*d;
+            }
+            else if(n==1){
+                array1[i]=secondLimit;
+            }}
+        return array1;
+    }
+
+
+    public static double sigmoid(double x){
+        return 1/(1+Math.exp(-x));
+    }
+
+
+    public static double[] applySigmoidToArray(double ys[]){
+
+        for(int i=0; i<ys.length; i++){
+        ys[i]=sigmoid(ys[i]);
+        }
+        return ys;
+    }
+
+
+    public static void plotSigmoid(){
+        double[] k= createSamplingPoints(FIRST_LIMIT,SECOND_LIMIT,NUMBER_OF_POINT);
+        double[] y= applySigmoidToArray(k);
+        double[] x= createSamplingPoints(FIRST_LIMIT,SECOND_LIMIT,NUMBER_OF_POINT);
+        PlotHelper.plot2D(x,y);
+       }
+
+
+    public static void plotEcg() {
+        double[] ecgSignal = PlotHelper.readEcg("ecg.txt");
+        final double firstLimit = 0;
+        final double secondLimit = 8.8;
+        final int SAMPLING_RATE = 2200;
+        double[] ecgTime = createSamplingPoints(firstLimit, secondLimit, SAMPLING_RATE);
+        PlotHelper.plotEcg(ecgTime,ecgSignal);
+
+        int[] idxRPeaks = PlotHelper.readPeaks("rpeaks.txt");
+        double[] rPeaks = new double[9];
+        double[] timeRPeaks = new double[9];
+        for (int i = 0; i < idxRPeaks.length; i++) {
+            rPeaks[i] = ecgSignal[idxRPeaks[i]];
+            timeRPeaks[i] = ecgTime[idxRPeaks[i]];
+        }
+        computeHeartRate(timeRPeaks);
+        PlotHelper.plotEcg(ecgTime, ecgSignal, timeRPeaks, rPeaks);
+    }
+
+
+     public static void computeHeartRate(double[] timeRPeaks){
+        System.out.println("Heart Rate:");
+        for(int i=0;i<timeRPeaks.length;i++){
+            double TimeDifference;
+            TimeDifference=timeRPeaks[i+1]-timeRPeaks[i];
+            double HeartRate;
+            HeartRate=60/TimeDifference;
+            System.out.println(String.format("%.2f",(HeartRate))+" bpm");
+        }
+    }
+
+     public static void main(String[] args) {
+        Scanner firstLimit = new Scanner(System.in);
+        System.out.println("firstLimit:");
+        double fL = firstLimit.nextDouble();
+        Scanner secondLimit = new Scanner(System.in);
+        System.out.println("secondLimit:");
+        double sL = secondLimit.nextDouble();
+        Scanner n = new Scanner(System.in);
+        System.out.println("numberOfPoint:");
+        int num = n.nextInt();
+        double[] array1 = createSamplingPoints(fL, sL, num);
+        System.out.println(java.util.Arrays.toString(array1));
+        plotSigmoid();
+        plotEcg();
+
+    }}

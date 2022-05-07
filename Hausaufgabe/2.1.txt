@@ -1,0 +1,36 @@
+package Ex;
+
+public class Main {
+    public static void main(String[] args) {
+        int counter=0;
+        int var=50;
+        String result="b";
+
+        while(counter<4){
+            counter+=2;
+            System.out.print(result);
+            switch(var%5){
+                case 0:
+                    result="az";
+                    var/=25;
+                    break;
+                case 1:
+                    result="ru";
+                    var*=3;
+                    break;
+                case 2:
+                    result="ok";
+                    var-=11;
+                case 3:
+                    result="in";
+                    counter--;
+                    break;
+                case 4:
+                    result="we";
+            var++;
+                default:
+            result="ga";
+            System.out.print(result);
+            break;}
+        }
+    }}

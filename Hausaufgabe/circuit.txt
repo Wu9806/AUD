@@ -1,0 +1,74 @@
+// Naikun Fan (Matrikelnummer: 23033490)
+// Xinmin Hou (Matrikelnummer: 23007334)
+
+package com.company;
+import java.util.Scanner;
+
+public class Circuit {
+
+    public static void main(String[] args) {
+        int voltage = 5;
+        double d1 = 0.003;
+        double d2 = 0.004;
+        double a1 = 0.00097;
+        double a2 = 0.00051;
+        double resistor1 = 1000;
+        double resistor2 = 472;
+        final double EPSILON_0 = Math.pow(8.854,-12);
+
+
+        Scanner scRes = new Scanner(System.in);
+              System.out.println("protectiveResistor:");
+        double protectiveResistor = scRes.nextDouble();
+        double current;
+          current = voltage / protectiveResistor;
+        double power;
+          power = current * current * protectiveResistor;
+        if(protectiveResistor>0) {
+               System.out.println("Current: " + (current) + " Ampere");
+               System.out.println("Power: " + (power) + " Watt");
+        } else {
+               System.err.println("Fehler");
+        }
+
+
+        Scanner scMod = new Scanner(System.in);
+                System.out.println("module:");
+        String module = scMod.nextLine();
+        switch(module){
+            case"cap":
+                System.out.println("Kondensatoren");
+        final int EPSILON_r = 1;
+        double capacity1;
+           capacity1 = EPSILON_0 * EPSILON_r * a1 / d1;
+        double capacity2;
+           capacity2 = EPSILON_0 * EPSILON_r * a2 / d2;
+                System.out.println("Capacity1: " + (capacity1) + " Farad");
+                System.out.println("Capacity2: " + (capacity2) + " Farad");
+        double totalCapacity;
+           totalCapacity = capacity1 + capacity2;
+                System.out.println("The total capacity is: " + (totalCapacity) + " Farad");
+                break;
+
+            case"res":
+                System.out.println("Widerstaende");
+        double totalResistance;
+            totalResistance = 1/(1/resistor1 + 1/resistor2);
+                System.out.println("The total resistance is: " + (totalResistance) + " Ohm");
+                break;
+
+            case"short":
+                System.out.println("Kurzschluesse");
+                System.out.println("Board shorted - No modules installed!");
+                break;
+
+            default:
+                System.err.println("Fehler");
+        }
+
+
+        scRes.close();
+        scMod.close();
+
+    }
+}

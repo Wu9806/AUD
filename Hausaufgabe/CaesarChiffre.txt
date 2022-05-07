@@ -1,0 +1,68 @@
+// Naikun Fan (Matrikelnummer: 23033490)
+package com.company;
+
+
+public class CaesarChiffre {
+    static final String GERMAN_LANGUAGE_PATTERN="Werden zwei Glasstaebe mit einem Wolltuch gerieben, dann kann man feststellen, dass sich die beiden Staebe gegenseitig abstossen. Wird das gleiche Experiment mit zwei Kunststoffstaeben wiederholt, dann bleibt das Ergebnis gleich, auch diese beiden Staebe stossen sich gegenseitig ab. Im Gegensatz dazu ziehen sich ein Glas und ein Kunststoffstab gegenseitig an. Diese mit den Gesetzen der Mechanik nicht zu erklaerende Erscheinung fuehrt man auf Ladungen zurueck. Da sowohl Anziehung als auch Abstossung auftritt, muessen zwei verschiedene Arten von Ladungen existieren. Man unterscheidet daher positive und negative Ladungen.";
+    static final String ENCRYPTED_MESSAGE="xjmw lzy! iz mfxy ijs htij ljpsfhpy zsi inw xt wzmr zsi jmwj jw|twgjs. nhm rzxx rnw mnjw ojijx xjrjxyjw jnsjs sjzjs yj}y fzxijspjs zsi qfslxfr |jwijs inj nijjs psfuu.";
+    static final char SEPARATOR=' ';
+
+    public static int getIndexOfMaximumEntry(int[] array){
+        int Maximum=array[0];
+        int maxIndex=0;
+        for(int i=0;i<array.length;i++){
+            if(Maximum<=array[i]){
+                Maximum=array[i];
+                maxIndex=i;
+            }
+        }
+        return maxIndex;
+
+    }
+
+    public static int[] getHistogram() {
+        String german_language_pattern = GERMAN_LANGUAGE_PATTERN.toLowerCase();
+        int[] histogram = new int[german_language_pattern.length()];
+        int[] a = new int[histogram.length];
+        int c = -1;
+        for (int i = 0; i < german_language_pattern.length(); i++) {
+            histogram[i]=german_language_pattern.charAt(i);
+            int count = 1;
+            for (int j = i + 1; j < german_language_pattern.length(); j++) {
+                if ((int)german_language_pattern.charAt(i) == (int)german_language_pattern.charAt(j)) {
+                    count++;
+                    a[j] = c;
+                }
+            }
+            if (a[i] != c) {
+                a[i] = count;
+            }}
+
+        System.out.println(" Character | Frequency");
+        for(int i = 0; i < a.length; i++){
+            if(a[i] != c)
+                System.out.println("    " + histogram[i] +"        "+ a[i]);
+        }
+        return a;
+    }
+
+    public static int getSignificantLetter(){
+        int[] histogram=getHistogram();
+       System.out.println("histogram: "+java.util.Arrays.toString(histogram));
+        int maxIndex= getIndexOfMaximumEntry(histogram);
+        System.out.println("maxIndex= "+maxIndex);
+        int Frequency=histogram[maxIndex];
+        char F=(char)101;
+       System.out.println("Frequency= "+ F);
+
+return maxIndex;
+    }
+
+
+
+        public static void main (String[]args){
+            getHistogram();
+            getSignificantLetter();
+
+        }
+    }

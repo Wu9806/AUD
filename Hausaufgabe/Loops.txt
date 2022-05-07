@@ -1,0 +1,92 @@
+// Naikun Fan (Matrikelnummer: 23033490)
+package com.company;
+
+public class Loops {
+
+    public static void main(String[] args) {
+
+        for (int num1 = 0; num1 <= 10; num1++) {
+            System.out.print(num1 + " ");
+        }
+        System.out.print("\n");
+
+
+        for (int num2 = 0; num2 < 11; num2++) {
+            System.out.print(num2 + " ");
+        }
+        System.out.print("\n");
+
+
+        for (int num3 = 6; num3 <= 42; num3 += 6) {
+            System.out.print(num3 + " ");
+        }
+        System.out.print("\n");
+
+
+        for (int num4 = 23; num4 >= 11; num4 -= 2) {
+            System.out.print(num4 + " ");
+        }
+        System.out.print("\n");
+
+
+        for (int num5 = 8; num5 < 17; num5 += 2) {
+            System.out.print(num5 + " ");
+        }
+        System.out.print("\n");
+
+
+        for (int num6 = 16; num6 <= 711; num6 *= 2) {
+            System.out.print(num6 + " ");
+        }
+        System.out.print("\n");
+
+
+        int m = 7;
+        int i1 = 0;
+        while (i1 <= m) {
+            System.out.print(i1 + " ");
+            i1++;
+        }
+        System.out.print("\n");
+
+
+        int i2 = 42;
+        while (i2 > m / 2) {
+            System.out.print(i2 + " ");
+            i2 -= 6;
+        }
+        System.out.print("\n");
+
+
+        int i3 = 0;
+        while (i3 <= m) {
+            System.out.print(i3 + " ");
+            i3++;
+            if (i3 > m) {
+                break;
+            }
+        }
+        System.out.print("\n");
+
+
+        int i4 = 42;
+        while (i4 > m / 2) {
+            System.out.print(i4 + " ");
+            i4 -= 6;
+            if (i4 <= m / 2) {
+                break;
+            }
+        }
+        System.out.print("\n");
+
+
+        int nMax = 5;
+        double x = 2;
+        double a = 2;
+        double b;
+        for (int n = 0; n <= nMax; n++) {
+            b = 0.5 * (x + (a / x));
+            x = b;
+            System.out.print("Approximation at step" + "<" + n + ">" + ": " + "<" + x + ">" + "\n");
+        }
+    }}
